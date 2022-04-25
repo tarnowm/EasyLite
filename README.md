@@ -14,13 +14,13 @@ Some of the technlogies used to create this system include:
 - Flutter
 
 # Hardware
+A list of the hardware components used in this project can be found below:
   
-Board   
+Board    
 Type: Arduino UNO WiFi R2  
 Specifications: https://store-usa.arduino.cc/products/arduino-uno-wifi-rev2?selectedStore=us
   
-Sensors
-  
+Sensors  
 Type: Light Dependant Resistor (LDR)
 Model: LDR12  
 Specifications: https://www.nteinc.com/resistor_web/pdf/LDR-Series.pdf
@@ -28,9 +28,8 @@ Specifications: https://www.nteinc.com/resistor_web/pdf/LDR-Series.pdf
 Type: Passive Infrared Radiation (PIR)
 Model: HC-SR501  
 Specifications: https://www.mpja.com/download/31227sc.pdf
-
-Actuator  
   
+Actuator
 Type: 2 Channel 5V Relay Module
 Model: Sunfounder  
 Specifications: http://wiki.sunfounder.cc/index.php?title=2_Channel_5V_Relay_Module
@@ -40,6 +39,15 @@ Additional Components
 - 120V LightBulb
 - Resistor (10k ohm)
 - Jumpers
+
+#Project Overview
+
+
+
+
+
+
+
 
 
 
