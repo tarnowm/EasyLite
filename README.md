@@ -23,16 +23,19 @@ Sensors
 
 Type: Light Dependant Resistor (LDR)
 Model: LDR12
+
 Specifications: https://www.nteinc.com/resistor_web/pdf/LDR-Series.pdf
 
 Type: Passive Infrared Radiation (PIR)
 Model: HC-SR501
+
 Specifications: https://www.mpja.com/download/31227sc.pdf
 
 Actuator
 
 Type: 2 Channel 5V Relay Module
 Model: Sunfounder
+
 Specifications: http://wiki.sunfounder.cc/index.php?title=2_Channel_5V_Relay_Module
 
 Additional Components
