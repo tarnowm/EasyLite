@@ -40,7 +40,23 @@ Additional Components
 - Resistor (10k ohm)
 - Jumpers
 
-#Project Overview
+General hardware schematic can be found within the repository under "Arduino Circuit.png".
+
+# Project Overview
+The general outline of how EasyLite works is as as follows:
+1. Every 20 seconds the data collected by the LDR and PIR sensors is read by the board.
+2. The board writes the data to the ThingSpeak cloud service. 
+3. The most recent values are read by the board. These values are also read by the mobile application via API calls.
+4. If the new data warrants change, a signal is sent to the actuator to turn the light on/off.
+5. Repeat.
+
+
+
+
+
+
+
+
 
 
 
