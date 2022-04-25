@@ -43,12 +43,25 @@ Additional Components
 General hardware schematic can be found within the repository under "Arduino Circuit.png".
 
 # Project Overview
+An overview of how the system operates:
+
+![Overview](https://github.com/tarnowm/EasyLite/blob/main/Overview.PNG)
+
 The general outline of how EasyLite works is as as follows:
-1. Every 20 seconds the data collected by the LDR and PIR sensors is read by the board.
-2. The board writes the data to the ThingSpeak cloud service. 
-3. The most recent values are read by the board. These values are also read by the mobile application via API calls.
-4. If the new data warrants change, a signal is sent to the actuator to turn the light on/off.
-5. Repeat.
+- Data is collected by the LDR and PIR sensors attached to the arduino board. 
+- This data is then written to the storage cloud service. (ThingSpeak)
+- After the ThingSpeak fields have been updated, this new data is ready to be read by the board and the mobile application.
+- If the most recently collected data points warrant a change, the board will send a signal to the actuator, changing the state of the electronics.
+- If no change is warranted the processes repeats at regularly timed intervals. 
+- On the left hand side of the diagram, the user and mobile application can be found. Using the mobile application the user can check the state of the system at anytime as long as there is a WiFi connection. The user can also set the threshold value (a value that determines when the light will turn on/off) within the application, and change the system from automatic to manual mode (Gives the user the ability to change the state of electronics manually).
+- A security and storage cloud service (Google Firebase) is also integrated into the mobile application. It provides a means of creating new user accounts, authenticating existing user logins and storing data pertaining to the user.
+
+
+ThingSpeak
+
+ThingSpeak is an IoT analytics platform service that allows a user to aggregate, visualize and analyze live data streams in the cloud.
+For this project, 
+
 
 
 
