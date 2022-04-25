@@ -60,8 +60,16 @@ The general outline of how EasyLite works is as as follows:
 ThingSpeak
 
 ThingSpeak is an IoT analytics platform service that allows a user to aggregate, visualize and analyze live data streams in the cloud.
-For this project, 
+For this project, a total of 5 different fields were used to collect and monitor data:
 
+Field 1: LDR Value - Represents the brightness value of the room (0 - 1023)  
+Field 2: PIR Value - Pepresents the presence or absence of motion in the room (0 - No Motion, 1 - Motion)  
+Field 3: Actuator State - Displays whether the light is currently ON of OFF (0 - OFF, 1 - ON)  
+Field 4: System State - Represents whether the system is in Automatic or Manual Mode (0 - Automatic, 1 - Manual)  
+Field 5: Input Threshold - User chosen value that is compared to the LDR Value (600 - 1023)  
+
+
+![ThingSpeak](https://github.com/tarnowm/EasyLite/blob/main/ThingSpeak.PNG)
 
 
 
