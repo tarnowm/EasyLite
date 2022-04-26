@@ -7,6 +7,7 @@
 4. [Project Overview](#ProjectOverview)
    1. [ThingSpeak](#ThingSpeak)
    2. [Arduino](#Arduino)
+   3. [Flutter UI](#FlutterUI)
 
 
 ## Project Description <a name="ProjectDescription"><a/>
@@ -59,8 +60,8 @@ Notes: Actuator uses Pin 3 on the Arduino board.
 
 General hardware schematic can be found here:  
   
-[Arduino Circuit](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Arduino%20Circuit.png "Arduino Circuit")  
-
+<img src="https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Arduino%20Circuit.png" width=500 height=600>   
+  
 ## Project Overview <a name="ProjectOverview"><a/>
 An overview of how the system operates:
 
@@ -102,7 +103,17 @@ The Arduino board was programmed using the Arduino IDE. The board has mutliple r
 - Host the logic that decides whether the state of the light needs to be changed
 
 Below is an illustration of the the serial output demonstrating the program:  
+  
+![Serial Output](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Serial%20Output.PNG)  
 
-![Serial Output]()
+
+### Flutter UI <a name="FlutterUI"><a/>
+   
+
+
+
+   
+
+
 
 
