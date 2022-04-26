@@ -59,12 +59,12 @@ Notes: Actuator uses Pin 3 on the Arduino board.
 
 General hardware schematic can be found here:  
   
-[Arduino Circuit](https://github.com/tarnowm/EasyLite/blob/main/Arduino%20Circuit.png "Arduino Circuit")  
+[Arduino Circuit](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Arduino%20Circuit.png "Arduino Circuit")  
 
 ## Project Overview <a name="ProjectOverview"><a/>
 An overview of how the system operates:
 
-![Overview](https://github.com/tarnowm/EasyLite/blob/main/Overview.PNG)
+![Overview](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Overview.PNG)
 
 The general outline of how EasyLite works is as as follows:
 - Data is collected by the LDR and PIR sensors attached to the arduino board. 
@@ -88,7 +88,7 @@ Field 4: System State - Represents whether the system is in Automatic or Manual 
 Field 5: Input Threshold - User chosen value that is compared to the LDR Value (600 - 1023)  
 
 
-![ThingSpeak](https://github.com/tarnowm/EasyLite/blob/main/ThingSpeak.PNG)
+![ThingSpeak](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/ThingSpeak.PNG)
 
 ### Arduino <a name="Arduino"><a/>
 
