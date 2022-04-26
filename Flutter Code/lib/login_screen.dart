@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 /// screen for the application. Users will have the option to login or
 /// create a new account here.
 
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      resizeToAvoidBottomInset: false,
       body: FutureBuilder(
         future: _initializeFirebase(),
         builder: (context, snapshot) {
@@ -73,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
       user = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if(e.code == "user-not-found"){
-        print("No user found for that email");
+        print(e.code);
       }
     }
     return user;
@@ -83,95 +84,178 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     TextEditingController _emailController = TextEditingController();
     TextEditingController _passwordController = TextEditingController();
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-              "Easy Lite",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 44.0,
-                fontWeight: FontWeight.bold,
-          ),
-          ),
-          const Text(
-              "   Login to Get Started",
-            style: TextStyle(
-              color: Colors.amber,
-              fontSize: 26.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(
-            height: 44.0
-          ),
-          TextField(
-            controller: _emailController,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              hintText: "email",
-              prefixIcon: Icon(Icons.person, color: Colors.amber),
-            ),
-          ),
-          const SizedBox(
-            height: 26.0,
-          ),
-          TextField(
-            controller: _passwordController,
-            obscureText: true,
-            decoration: const InputDecoration(
-              hintText: "password",
-              prefixIcon: Icon(Icons.key, color: Colors.amber),
-            ),
-          ),
-          const SizedBox(
-            height: 60.0,
-          ),
-          Container(
-            width: double.infinity,
-            child: RawMaterialButton(
-              fillColor: Colors.amber,
-              elevation: 0.0,
-              padding: EdgeInsets.symmetric(vertical: 20.0),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
-              onPressed: () async {
-                User? user = await loginUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
-                print(user);
-                if(user != null) {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => PrimaryScreen()));
-                }
-              },
-              child: const Text(
-                "Login",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold,
+    return Stack(
+            children: [
+              Column(
+                children: [
+                  Image.asset('assets/wall_green.png',
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  const SizedBox(height: 40),
+                  Image.asset('assets/logo.png'),
+                ],
+              ),
+              Row(
+                children: [
+                  const SizedBox(width: 10),
+                  Column(
+                    children: [
+                      const SizedBox(height: 180),
+                      Container(
+                          height: 240,
+                          width: 375,
+                          decoration: BoxDecoration(
+                            color: Colors.white70,
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              bottomLeft: Radius.circular(10),
+                            ),
+                            border: Border.all(color: Colors.black),
+                          ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  const SizedBox(width: 10),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 140),
+                      const SizedBox(height: 10),
+                      Container(
+                        height: 30,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            color: Colors.lightGreen.shade700,
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                          )
+                        ),
+                        child: Row(
+                          children: const [
+                            SizedBox(width: 18),
+                            Text("Login to Get Started",
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold
+                            ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 190),
+                    TextField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        hintText: "email",
+                        prefixIcon: Icon(Icons.person, color: Colors.grey.shade800),
+                      ),
+                    ),
+                    const SizedBox(height:15),
+                    TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration:  InputDecoration(
+                        hintText: "password",
+                        prefixIcon: Icon(Icons.key, color: Colors.grey.shade800),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    SizedBox(
+                      height: 45,
+                      width: 200,
+                      child: RawMaterialButton(
+                        onPressed: () async {
+                          User? user = await loginUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
+                          if(user != null) {
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => PrimaryScreen()));
+                          }
+                          else {
+                            showDialog(
+                                context: context,
+                                builder: (_) => const AlertDialog(
+                                    title: Text("Login Failed"),
+                                    content: Text("Username not Found")
+                                )
+                            );
+                          }
+                        },
+                        fillColor: Colors.yellow,
+                        elevation: 2,
+                        padding: const EdgeInsets.symmetric(),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        child: const Text("Login",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )
+                        ),
+                      )
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          TextButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SignupScreen()));
-              },
-              child: const Text(
-                "Don't have an account? Sign up here!",
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-        ]
-      )
-    );
+              Column(
+                children: [
+                  const SizedBox(height:420),
+                  Row(
+                    children: [
+                      const SizedBox(width:10),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const SignupScreen()));
+                        },
+                        child: Text(
+                          "Create an Account",
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green.shade800,
+                          ),
+                        ),
+                      ),
+                      const Text(" - "),
+                      TextButton(
+                        onPressed: () {
+                        },
+                        child: Text(
+                          "Recover Your Password",
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green.shade800,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              )
+            ],
+          );
   }
 }
