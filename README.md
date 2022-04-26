@@ -1,48 +1,67 @@
 # EasyLite Home Automation System
 
-# Project Description
+# Table of Contents
+1. [Project Description](#ProjectDescription)
+2. [Technologies Used](#TechnologiesUsed)
+3. [Hardware](#Hardware)
+4. [Project Overview](#ProjectOverview)
+   1. [ThingSpeak](#ThingSpeak)
+   2. [Arduino](#Arduino)
+
+
+## Project Description <a name="ProjectDescription"><a/>
 EasyLite is a proof of concept Internet of Things (IoT) home automation system capable of automatically monitoring the environment, changing the state of electronics based on collected physical data, and providing the user real time updates and system controls via a mobile application.
 
 The main goal of EasyLite was to provide a means of conserving energy, and reducing the overall cost of electricity for a user, while improving the quality of life of the user via automated features. This is primarily done by taking the need for human interaction out of the equation, while also giving the user a means of monitoring and controlling their home system remotely through the use of a mobile application. This is done by creating an IoT system, by interlacing an embedded system, multiple cloud services, and a mobile application.
 
 
-# Technologies Used
+## Technologies Used <a name="TechnologiesUsed"><a/>
 Some of the technlogies used to create this system include:
 - Arduino
 - ThingSpeak
 - Google Firestore
 - Flutter
 
-# Hardware
+## Hardware <a name="Hardware"><a/>
 A list of the hardware components used in this project can be found below:
   
-Board    
-Type: Arduino UNO WiFi R2  
+**Board**    
+*Arduino UNO WiFi R2*  
 Specifications: https://store-usa.arduino.cc/products/arduino-uno-wifi-rev2?selectedStore=us
   
-Sensors  
-Type: Light Dependant Resistor (LDR)
+**Sensors**  
+*Light Dependant Resistor (LDR)*
 Model: LDR12  
-Specifications: https://www.nteinc.com/resistor_web/pdf/LDR-Series.pdf
+Specifications: https://www.nteinc.com/resistor_web/pdf/LDR-Series.pdf  
   
-Type: Passive Infrared Radiation (PIR)
+Notes: The LDR sensor uses the analog input pin A0 on the Arduino board. This LDR sensor is coupled  
+with a 10k ohm resistor to ensure it provides a wide range of values. Having a larger range of  
+values to compare to a threshold, allows the user to easily make adjustments.  
+  
+*Passive Infrared Radiation (PIR)*
 Model: HC-SR501  
 Specifications: https://www.mpja.com/download/31227sc.pdf
+
+Notes: PIR Sensor uses Pin 2 on the Arduino board. 
   
-Actuator
-Type: 2 Channel 5V Relay Module
+**Actuator**
+*2 Channel 5V Relay Module*
 Model: Sunfounder  
 Specifications: http://wiki.sunfounder.cc/index.php?title=2_Channel_5V_Relay_Module
 
-Additional Components
+Notes: Actuator uses Pin 3 on the Arduino board.
+
+**Additional Components**
 - Breadboard
 - 120V LightBulb
 - Resistor (10k ohm)
 - Jumpers
 
-General hardware schematic can be found within the repository under "Arduino Circuit.png".
+General hardware schematic can be found here:  
+  
+[Arduino Circuit](https://github.com/tarnowm/EasyLite/blob/main/Arduino%20Circuit.png "Arduino Circuit")  
 
-# Project Overview
+## Project Overview <a name="ProjectOverview"><a/>
 An overview of how the system operates:
 
 ![Overview](https://github.com/tarnowm/EasyLite/blob/main/Overview.PNG)
@@ -57,7 +76,7 @@ The general outline of how EasyLite works is as as follows:
 - A security and storage cloud service (Google Firebase) is also integrated into the mobile application. It provides a means of creating new user accounts, authenticating existing user logins and storing data pertaining to the user.
 
 
-ThingSpeak
+### ThingSpeak <a name="ThingSpeak"><a/>
 
 ThingSpeak is an IoT analytics platform service that allows a user to aggregate, visualize and analyze live data streams in the cloud.
 For this project, a total of 5 different fields were used to collect and monitor data:
@@ -71,34 +90,19 @@ Field 5: Input Threshold - User chosen value that is compared to the LDR Value (
 
 ![ThingSpeak](https://github.com/tarnowm/EasyLite/blob/main/ThingSpeak.PNG)
 
+### Arduino <a name="Arduino"><a/>
 
+The Arduino board was programmed using the Arduino IDE. The board has mutliple responsibilities including:
+  
+- Collecting physical data from the sensors  
+- Write data to ThingSpeak
+- Read data from ThingSpeak  (http write/read requests are handled by the [ThingSpeak Library](https://github.com/mathworks/thingspeak-arduino))  
+- Send signals to the actuator  
+- Connect the board to the internet via WiFi  
+- Host the logic that decides whether the state of the light needs to be changed
 
+Below is an illustration of the the serial output demonstrating the program:  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![Serial Output]()
 
 
