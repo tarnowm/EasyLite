@@ -28,12 +28,12 @@ A list of the hardware components used in this project can be found below:
   
 **Board**    
 *Arduino UNO WiFi R2*  
-Specifications: https://store-usa.arduino.cc/products/arduino-uno-wifi-rev2?selectedStore=us
+[Specifications](https://store-usa.arduino.cc/products/arduino-uno-wifi-rev2?selectedStore=us)  
   
 **Sensors**  
 *Light Dependant Resistor (LDR)*
 Model: LDR12  
-Specifications: https://www.nteinc.com/resistor_web/pdf/LDR-Series.pdf  
+[Specifications](https://www.nteinc.com/resistor_web/pdf/LDR-Series.pdf)  
   
 Notes: The LDR sensor uses the analog input pin A0 on the Arduino board. This LDR sensor is coupled  
 with a 10k ohm resistor to ensure it provides a wide range of values. Having a larger range of  
@@ -41,14 +41,14 @@ values to compare to a threshold, allows the user to easily make adjustments.
   
 *Passive Infrared Radiation (PIR)*
 Model: HC-SR501  
-Specifications: https://www.mpja.com/download/31227sc.pdf
+[Specifications](https://www.mpja.com/download/31227sc.pdf)  
 
 Notes: PIR Sensor uses Pin 2 on the Arduino board. 
   
 **Actuator**
 *2 Channel 5V Relay Module*
 Model: Sunfounder  
-Specifications: http://wiki.sunfounder.cc/index.php?title=2_Channel_5V_Relay_Module
+[Specifications](http://wiki.sunfounder.cc/index.php?title=2_Channel_5V_Relay_Module)  
 
 Notes: Actuator uses Pin 3 on the Arduino board.
 
