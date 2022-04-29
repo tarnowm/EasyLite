@@ -96,6 +96,12 @@ Below is an illustration of the the serial output demonstrating the program:
 
 ### Flutter UI <a name="FlutterUI"><a/>
 
+Flutter was used for this project due to its ability to develop applicatons for different operating systems simultaneously.  
+This sections will show off some of the screens used within the application, and explain the intended use of each of them.  
+
+|LoginScreen|Description|
+|:-:|:-:|
+|![LoginScreen](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Login%20Screen.PNG) | When the application is launched, the first screen the user encounters is the log in screen. Here the user will either enter their existing credentials, or have the option to create an account. User information and log in authentication is done with Google Firebase. If the user wishes to create an account, the program will direct the user to the data entry screen. |
 
    
   
