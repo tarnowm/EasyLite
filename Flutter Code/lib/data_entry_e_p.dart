@@ -38,125 +38,190 @@ class _DataEntryState extends State<DataEntry> {
     TextEditingController _password = TextEditingController();
     TextEditingController _pwrRate = TextEditingController();
 
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Colors.lightBlue, Colors.white70])),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white70,
-          elevation: 0.0,
-          shadowColor: Colors.blueGrey,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(20),
-            ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              Image.asset('assets/wall_green.png',
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.cover
+              ),
+            ],
           ),
-          title: const Text(
-            'Account Creation',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            )
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-            child:Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TextField(
-                  controller: _firstName,
-                  keyboardType: TextInputType.name,
-                  decoration: const InputDecoration(
-                    hintText: "first name",
-                    prefixIcon: Icon(Icons.sort_by_alpha_rounded, color: Colors.black),
-                  ),
-                ),
-                const SizedBox(
-                  height: 9.0,
-                ),
-                TextField(
-                  controller: _lastName,
-                  keyboardType: TextInputType.name,
-                  decoration: const InputDecoration(
-                    hintText: "last name",
-                    prefixIcon: Icon(Icons.sort_by_alpha_rounded, color: Colors.black),
-                  ),
-                ),
-                const SizedBox(
-                  height: 9.0,
-                ),
-                TextField(
-                  controller: _email,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    hintText: "email",
-                    prefixIcon: Icon(Icons.email_rounded, color: Colors.black),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                TextField(
-                  controller: _password,
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration: const InputDecoration(
-                    hintText: "password",
-                    prefixIcon: Icon(Icons.lock, color: Colors.black),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                TextField(
-                  controller: _pwrRate,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    hintText: "kWh rate (optional)",
-                    prefixIcon: Icon(Icons.bolt, color: Colors.black),
-                  ),
-                ),
-                const SizedBox(
-                  height: 60.0,
-                ),
-                Container(
-                  width: 200.0,
-                  height: 50.0,
-                  child: RawMaterialButton(
-                    onPressed: () async {
-                     User? user = await createUserWithEmailPassword(email: _email.text, password: _password.text, context: context);
-                     FirebaseFirestore.instance.collection('users').add({
-                       'first name': _firstName.text,
-                       'last name': _lastName.text,
-                       'email': _email.text,
-                       'kWh': _pwrRate.text,
-                     });
-                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => PrimaryScreen()));
-                     //print(user);
-                     },
-                    fillColor: Colors.amber,
-                    elevation: 1.0,
-                    hoverColor: Colors.blueGrey,
-                    padding: const EdgeInsets.symmetric(),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    child: const Text(
-                      'Submit',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+          Row(
+            children: [
+              const SizedBox(width: 20),
+              Column(
+                children: [
+                  const SizedBox(height: 120),
+                  Container(
+                    height: 290,
+                    width: 355,
+                    decoration: BoxDecoration(
+                      color: Colors.white70,
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      border: Border.all(color: Colors.black),
                     ),
                   ),
-                ),
-                ),
+                ],
+              )
             ],
-        ),
-      ),
+          ),
+          Row(
+            children: [
+              const SizedBox(width:20),
+              Column(
+                children: [
+                  const SizedBox(height:90),
+                  Container(
+                    height: 30,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: Colors.lightGreen.shade700,
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(10),
+                        topLeft: Radius.circular(10),
+                      ),
+                    ),
+                    child: Row(
+                      children:  [
+                        SizedBox(width: 18),
+                        Column(
+                          children: [
+                            SizedBox(height:5 ),
+                            Text("Account Creation",
+                              style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              SizedBox(width: 25),
+              Column(
+                children: [
+                  SizedBox(height: 130),
+                  Container(
+                    width: 345,
+                    child: TextField(
+                      controller: _firstName,
+                      keyboardType: TextInputType.name,
+                      decoration: const InputDecoration(
+                        hintText: "first name",
+                        prefixIcon: Icon(Icons.sort_by_alpha_rounded, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Container(
+                    width: 345,
+                    child: TextField(
+                      controller: _lastName,
+                      keyboardType: TextInputType.name,
+                      decoration: const InputDecoration(
+                        hintText: "last name",
+                        prefixIcon: Icon(Icons.sort_by_alpha_rounded, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Container(
+                    width: 345,
+                    child: TextField(
+                      controller: _email,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        hintText: "email",
+                        prefixIcon: Icon(Icons.email_rounded, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Container(
+                    width: 345,
+                    child: TextField(
+                      controller: _password,
+                      keyboardType: TextInputType.visiblePassword,
+                      decoration: const InputDecoration(
+                        hintText: "password",
+                        prefixIcon: Icon(Icons.lock, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Container(
+                    width: 345,
+                    child: TextField(
+                      controller: _pwrRate,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: "kWh rate (optional)",
+                        prefixIcon: Icon(Icons.bolt, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+          Row(
+            children: [
+              SizedBox(width: 100),
+
+              Column(
+                children: [
+                  SizedBox(height: 420),
+                  Container(
+                    width: 200,
+                    height: 50,
+                    child: RawMaterialButton(
+                      onPressed: () async {
+                        User? user = await createUserWithEmailPassword(email: _email.text, password: _password.text, context: context);
+                        FirebaseFirestore.instance.collection('users').add({
+                          'first name': _firstName.text,
+                          'last name': _lastName.text,
+                          'email': _email.text,
+                          'kWh': _pwrRate.text,
+                        });
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => PrimaryScreen()));
+                      },
+                      fillColor: Colors.amber,
+                      elevation: 1.0,
+                      hoverColor: Colors.blueGrey,
+                      padding: const EdgeInsets.symmetric(),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      child: const Text(
+                          'Submit',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                    )
+                  ),
+                  ),
+                  ),
+                ],
+              )
+            ],
+          )
+        ],
       ),
     );
   }
