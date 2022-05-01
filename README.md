@@ -8,6 +8,7 @@
    1. [ThingSpeak](#ThingSpeak)
    2. [Arduino](#Arduino)
    3. [Flutter UI](#FlutterUI)
+   4. [Google Firebase](#GoogleFirebase)
 5. [Project Overview](#ProjectOverview)
    
 ## Project Description <a name="ProjectDescription"><a/>
@@ -99,9 +100,20 @@ Below is an illustration of the the serial output demonstrating the program:
 Flutter was used for this project due to its ability to develop applicatons for different operating systems simultaneously.  
 This sections will show off some of the screens used within the application, and explain the intended use of each of them.  
 
-|LoginScreen|Description|
+|Login Screen|Description|
 |:-:|:-:|
-|![LoginScreen](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Login%20Screen.PNG) | When the application is launched, the first screen the user encounters is the log in screen. Here the user will either enter their existing credentials, or have the option to create an account. User information and log in authentication is done with Google Firebase. If the user wishes to create an account, the program will direct the user to the data entry screen. |
+|![LoginScreen](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Login%20Screen.PNG)| When the application is launched, the first screen the user encounters is the log in screen. Here the user will either enter their existing credentials, or have the option to create an account. User information and log in authentication is done with Google Firebase. If the user wishes to create an account, the program will direct the user to the data entry screen.|
+|Data Entry Screen|Description|
+|![DataEntry](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/DataEntryScreen.PNG)| The data entry screen is shown when a user chooses to create a new account. Information such as first/last name, email, password, and power rate will be collected from the user. An account is created for the user, and all information given is stored using Google Firebase.|
+|Primary Screen|Description|
+|![PrimaryScreen](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Primary%20Screen.PNG)| This is the primary screen of the application. Here the user will be able to track the status of the home automation system, set new brightness thresholds, and switch the system between manual and automatic modes. The screen is refreshed every 5 seconds with newly collected values from ThingSpeak.|
+|Profile Page|Description|
+|![Profile](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Profile.PNG)| The profile page gives a brief summary of information belonging to the user. On this page, energy calculations can be found that pertain to the users systems are shown. NOTE: At the moment the calculations are hard coded to show off the concept, but in future versions, values will be combined with user entered power rates, and values collected from major power companies to deduce savings.|
+
+### Google Firebase <a name="GoogleFirebase"><a/>
+
+When the user creates an account within the application, the information is registered and stored using Google Firebase. When logging in, credentials are authenticated using the service. At the moment, the information is collected from the user, but a Firebase API call to reference the information belonging to a specific user is not implemented. The profile screen at the moment contains hard-coded values. 
+   
 
    
   
