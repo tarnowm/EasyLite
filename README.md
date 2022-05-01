@@ -10,6 +10,10 @@
    3. [Flutter UI](#FlutterUI)
    4. [Google Firebase](#GoogleFirebase)
 5. [Project Overview](#ProjectOverview)
+   1. [Manual vs Automatic](#MvA)
+   2. [Scenario Table](#ScenTable)
+6. [Future Version Plans](#FutureVersions)
+7. [Conclusion](#Conclusion)
    
 ## Project Description <a name="ProjectDescription"><a/>
 EasyLite is a proof of concept Internet of Things (IoT) home automation system capable of automatically monitoring the environment, changing the state of electronics based on collected physical data, and providing the user real time updates and system controls via a mobile application.
@@ -59,10 +63,12 @@ Notes: Actuator uses Pin 3 on the Arduino board.
 - Resistor (10k ohm)
 - Jumpers
 
-General hardware schematic can be found here:  
-  
-<img src="https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Arduino%20Circuit.png" width=500 height=600>   
+<details><summary><b>General Schematic</b></summary>
    
+![GFAuth](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Arduino%20Circuit.png)
+   
+</details>
+    
 ## Software <a name="Software"><a/>
 
 ### ThingSpeak <a name="ThingSpeak"><a/>
@@ -90,11 +96,12 @@ The Arduino board was programmed using the Arduino IDE. The board has mutliple r
 - Connect the board to the internet via WiFi  
 - Host the logic that decides whether the state of the light needs to be changed
 
-Below is an illustration of the the serial output demonstrating the program:  
+<details><summary><b>Serial Monitor Example</b></summary>
+   
+![GFAuth](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Serial%20Output.PNG)
+   
+</details> 
   
-![Serial Output](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/Serial%20Output.PNG)  
-
-
 ### Flutter UI <a name="FlutterUI"><a/>
 
 Flutter was used for this project due to its ability to develop applicatons for different operating systems simultaneously.  
@@ -113,10 +120,19 @@ This sections will show off some of the screens used within the application, and
 ### Google Firebase <a name="GoogleFirebase"><a/>
 
 When the user creates an account within the application, the information is registered and stored using Google Firebase. When logging in, credentials are authenticated using the service. At the moment, the information is collected from the user, but a Firebase API call to reference the information belonging to a specific user is not implemented. The profile screen at the moment contains hard-coded values. 
-   
 
+<details><summary><b>Firebase Authentication</b></summary>
    
-  
+![GFAuth](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/GFAuth.PNG)
+   
+</details>
+
+<details><summary><b>Firebase Authentication</b></summary>
+   
+![GFStore](https://github.com/tarnowm/EasyLite/blob/main/Screenshots/GFStore.PNG)
+   
+</details>
+   
 ## Project Overview <a name="ProjectOverview"><a/>
 An overview of how the system operates:
 
@@ -131,12 +147,53 @@ The general outline of how EasyLite works is as as follows:
 - On the left hand side of the diagram, the user and mobile application can be found. Using the mobile application the user can check the state of the system at anytime as long as there is a WiFi connection. The user can also set the threshold value (a value that determines when the light will turn on/off) within the application, and change the system from automatic to manual mode (Gives the user the ability to change the state of electronics manually).
 - A security and storage cloud service (Google Firebase) is also integrated into the mobile application. It provides a means of creating new user accounts, authenticating existing user logins and storing data pertaining to the user.
 
-
-
-
-
+### Manual Mode vs. Automatic Mode <a name="MvA"><a/>
+When the system is in automatic mode, all of the steps above are performed automatically.  
+Within the application, the user has the ability to toggle Manual Mode. When the system is in manual mode,  
+the arduino board will continue to read and write newly collected values to ThingSpeak, but the ability to  
+take action based on the new values is disabled. In manual mode, the user has the option to write new actuator  
+values to Thingspeak and change the state of the actuator. 
 
    
+### Scenario Table <a name="ScenTable"><a/>
+   
+**Key Terms**
+In order to gain a better understanding of how the system is expected to work, here is a list of terms used throughout the upcoming scenarios:
+   
+- *Threshold* - A user chosen value that determines when the light will turn on or off in terms of brightness (value is set in the mobile application)
+
+- *Brightness* - Analog value that is collected from the light dependent resistor (LDR) that is converted into a digital value by the Arduino board.
+
+- *Motion* - Motion is categorized by being absent or present, and is represented by 0 or 1 respectively. 
+
+| Scenario | Brightness | Threshold | Motion | System Mode | State of Light | Comments
+|---|---|---|---|---|---|---|
+| Daytime - NO Motion | 800 | 650 | NO | AUTO | OFF | Brightness is above the threshold, light turns/remains OFF. Motion not read. |
+| Daytime - Motion | 800 | 650 | YES | AUTO | OFF | Brightness is above the threshold, light turns/remains OFF. Motion not read. |
+| Nighttime - NO Motion | 500 | 650 | NO | AUTO | OFF | Brightness below threshold, but no motion detected. Light turns/remains OFF. |
+| Nighttime - Motion | 500 | 650 | YES | AUTO | ON | Brightness below threshold, with motion detected in area. Light turns/remains ON. |
+| Manual Mode | 800 | 650 | YES | MANUAL | DEPENDS | Manual Mode is on, system stops automatically taking action. User controls electronic states |
+
+
+## Future Version Plans <a name="FutureVersions"><a/>
+
+Looking forward, there are a many different improvements I would like to introduce to the EasyLite system. Some of the major changes that are planned for future versions include: 
+
+1. Energy Saving Calculations
+One of the driving reasons for developing this project was to try to increase overall savings on power bills, by reducing the total energy consumption of forgotten lights. While I believe that in it's current version the system has successfully incorporated a means of more efficient lighting, the total saving calculations remain incomplete. In it's current form, the calculations are hard coded into the profile to act as a proof of concept, and are derived from loose estimations from different generalized calculations found on power sites. Moving forward, implementing accurate saving calculations using reliable information from the user's power company of choice is a top priority. 
+   
+2. Modularity/Scalability
+The idea for this home automation system was to be able to incorporate a large variety of different electronics. At the moment, in order to show a proof of concept, the system is limited to lighting. Expanding the system to be able to accommodate different products is a top priority and can be done due to the flexibility that the power relay/actuator provides (A wide variety of different electronics can be attached to the actuator such as a Coffee Maker or Air Conditioner). Perhaps the program could be expanded in such a way that when a user initially creates an account they are presented with a variety of electronics to choose from. 
+   
+3. Performance
+In order to read and write data, we used a cloud service called ThingSpeak. For learning purposes, the free platform was more than enough to demonstrate the technology working. The free account ThingSpeak has a restriction of approximately 20 seconds in between writes. This means that changes given to the system can sometimes take up to 20 seconds to be reflected in the hardware or software. Timing manual writes such as the Threshold alteration between the automatic writes proved to be sometimes challenging. If this project were to be adapted into a fully functional product, research into more responsive cloud services would have to be done. The overall goal would be to create a more responsive system. 
+   
+
+## Conclusion <a name="Conclusion"><a/>
+
+
+
+
 
 
 
