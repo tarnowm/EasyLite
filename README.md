@@ -191,8 +191,11 @@ In order to read and write data, we used a cloud service called ThingSpeak. For 
 
 ## Conclusion <a name="Conclusion"><a/>
 
-
-
+I believe that the original goal of creating a proof of concept home automation system with a companion mobile application was successfully executed. The system is able to collect light and motion data from the environment and make the correct decisions on when to turn the light on or off automatically. The mobile application has the ability to display the system's status in real time, and gives the user the ability to manually control the light. 
+   
+One of the driving reasons for developing this project was to expose myself to a wide variety of different technologies and frameworks I've never seen before. Each of these technologies having it's own learning curve. Working with an embedded system for the first time was a fun yet challenging experience. A lot of initial project time was devoted to researching the specifics of the hardware and how each component would interact with one another. Performing calculations to choose the correct LDR/resistor combination, the intricies of how PIR sensors work, how to connect the system to the internet, and working with mains power supply to incorporate an actuator and light was very educational. Working with the APIs was very rewarding. Although I just scratched the surface, starting to familiarize myself with a current technology such as Google Firebase was a great learning experience. Using Flutter to create the mobile application was a fun journey. The original plan was to use my previous experience with Android Studio to build the application. I'm glad that I chose to branch out to a new technology. It provded to be very intuitive, and the amount of available resources online was staggerlingly abundant. 
+   
+Overall, I learned a lot from building this project, and I firmly beleive that many of the technologies and concepts learned will benefit my growth as a developer. 
 
 
 
