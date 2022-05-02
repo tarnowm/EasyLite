@@ -179,13 +179,13 @@ In order to gain a better understanding of how the system is expected to work, h
 
 Looking forward, there are a many different improvements I would like to introduce to the EasyLite system. Some of the major changes that are planned for future versions include: 
 
-1. Energy Saving Calculations
+1. Energy Saving Calculations  
 One of the driving reasons for developing this project was to try to increase overall savings on power bills, by reducing the total energy consumption of forgotten lights. While I believe that in it's current version the system has successfully incorporated a means of more efficient lighting, the total saving calculations remain incomplete. In it's current form, the calculations are hard coded into the profile to act as a proof of concept, and are derived from loose estimations from different generalized calculations found on power sites. Moving forward, implementing accurate saving calculations using reliable information from the user's power company of choice is a top priority. 
    
-2. Modularity/Scalability
+2. Modularity/Scalability  
 The idea for this home automation system was to be able to incorporate a large variety of different electronics. At the moment, in order to show a proof of concept, the system is limited to lighting. Expanding the system to be able to accommodate different products is a top priority and can be done due to the flexibility that the power relay/actuator provides (A wide variety of different electronics can be attached to the actuator such as a Coffee Maker or Air Conditioner). Perhaps the program could be expanded in such a way that when a user initially creates an account they are presented with a variety of electronics to choose from. 
    
-3. Performance
+3. Performance  
 In order to read and write data, we used a cloud service called ThingSpeak. For learning purposes, the free platform was more than enough to demonstrate the technology working. The free account ThingSpeak has a restriction of approximately 20 seconds in between writes. This means that changes given to the system can sometimes take up to 20 seconds to be reflected in the hardware or software. Timing manual writes such as the Threshold alteration between the automatic writes proved to be sometimes challenging. If this project were to be adapted into a fully functional product, research into more responsive cloud services would have to be done. The overall goal would be to create a more responsive system. 
    
 
